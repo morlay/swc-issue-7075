@@ -1,0 +1,31 @@
+name: test
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ ubuntu-22.04, ubuntu-18.04 ]
+        target: [ "host", "docker" ]
+    runs-on: ${{ matrix.os }}
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "^16"
+
+      - run: uname -a
+
+      - run: make setup
+        env:
+          GH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: make test.${{ matrix.target }}
+        env:
+          GH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+

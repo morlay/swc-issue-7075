@@ -1,0 +1,12 @@
+{
+  "name": "swc-issue-7075",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@innoai-tech/swc-plugin-annotate-pure-calls": "^0.1.0",
+    "@swc/core": "^1.3.40"
+  },
+  "devDependencies": {
+    "tsx": "^3.12.3"
+  }
+}
